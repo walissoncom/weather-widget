@@ -1,0 +1,39 @@
+.form {
+    width: 250px;
+    color: #333333;
+}
+
+.form >  form > div {
+    margin: 20px 0; 
+}
+
+/* Form Title */
+.form__title {
+    display: flex;
+    flex-direction: column;
+}
+
+.form__title > label {
+    margin-bottom: 10px;
+}
+
+.form__title > input {
+    padding: 7px;
+    border: 1px solid #D1D1D1;
+    border-radius: 3px;
+}
+
+/* Form Radio Button */
+.form__radio {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.form__radio > div > label {
+    margin-left: 5px;
+}
+
+.form__radio > div {
+    width: 50%;
+}
