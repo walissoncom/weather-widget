@@ -1,0 +1,1 @@
+export const API_KEY = ''; // YOUR API KEY - https://home.openweathermap.org/users/sign_up

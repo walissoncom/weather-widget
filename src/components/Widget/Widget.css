@@ -14,6 +14,9 @@
 .widget__top > h3 {
     font-size: 18px;
     text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Widget Bottom */
@@ -23,19 +26,44 @@
     height: 100%;
 }
 
+.widget__bottom.geolocation__error{
+    display: none;
+}
+
 .widget__info {
     margin-left: 25px;
 }
 
-.widget__info__left > h3 {
+.widget__info__details > h3 {
     font-size: 46px;
 }
 
 .widget__wind {
     font-size: 14px;
+    animation: fadeIn ease 1s;
+}
+
+.widget__wind.off {
+    display: none;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 .widget__wind > span:first-child {
     font-weight: bold;
     margin-right: 10px;
+}
+
+/* Widget Geolocation Error */
+.widget__info__error {
+    color: red;
+    display: none;
+    margin: 20px 0;
+}
+
+.widget__info__error.geolocation__error {
+    display: block;
 }
