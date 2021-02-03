@@ -10,6 +10,11 @@
     box-shadow:         1px 1px 10px 0px rgba(50, 50, 50, 0.2);
 }
 
+.dark .widget {
+    background-color: #2A2F32;
+    color: #FFF;
+}
+
 /* Widget Top */
 .widget__top > h3 {
     font-size: 18px;
@@ -17,6 +22,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.animated__icon {
+    width: 100px;
 }
 
 /* Widget Bottom */

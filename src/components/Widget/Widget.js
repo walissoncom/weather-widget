@@ -10,7 +10,7 @@ let weatherAPI = 'http://api.openweathermap.org/data/2.5/weather?';
 function Widget() {
 
     /* Data Layer Context - Used to read and add data */
-    const [{ title, temperature, wind }, dispatch] = useDataLayerValue();
+    const [{ darkMode, title, temperature, wind }, dispatch] = useDataLayerValue();
 
     /* State */
     const [latitude, setLatitude] = useState(0);
@@ -86,7 +86,21 @@ function Widget() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 2 }}>
-                    {weather?.weather[0].icon ? <img src={`http://openweathermap.org/img/wn/${weather?.weather[0].icon}@2x.png`} alt="Icon" /> : ''}
+
+                    {/* Check if the icon code is defined. Then check if user has selected dark mode or not. */}
+                    {/* If user has not selected any mode option, by default it loads the icons coming from the API provider */}
+                    {/* If the user has selected dark mode, it loads local svg files with animation */}
+                    {
+                        weather?.weather[0].icon ? (
+                            !darkMode ? (
+                                <img src={`http://openweathermap.org/img/wn/${weather?.weather[0].icon}@2x.png`} alt="Icon" />
+                            ) : (
+                                <img className="animated__icon" src={require(`../../assets/icons/${weather?.weather[0].icon}.svg`).default} alt="Icon" />
+                            )
+                        ) : (
+                            ''
+                        )
+                    }
                 </motion.div>
 
                 {/* Weather info */}
@@ -94,6 +108,7 @@ function Widget() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 2.5 }}>
+
                     <div className="widget__info__details">
                         <p>{weather ? weather?.name : 'Loading'}</p>
                         <h3>{weather?.main ? parseInt(weather?.main?.temp) : ''}&#186;</h3>
@@ -102,6 +117,7 @@ function Widget() {
                             <span>{weather?.wind?.speed ? parseInt(weather?.wind?.speed) : ''} {temperature === 'metric' ? 'km/h' : 'mph'}</span>
                         </div>
                     </div>
+
                 </motion.div>
             </div>
 

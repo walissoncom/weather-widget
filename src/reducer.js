@@ -1,5 +1,6 @@
 /* Setting up initial state variables */
 export const initialState = {
+    darkMode: false,
     title: 'Title of widget',
     temperature: 'metric',
     wind: 'on'
@@ -7,6 +8,7 @@ export const initialState = {
 
 /* Setting up data layer action types */
 export const actionTypes = {
+    SET_DARK_MODE: 'SET_DARK_MODE',
     SET_TITLE: 'SET_TITLE',
     SET_TEMPERATURE: 'SET_TEMPERATURE',
     SET_WIND: 'SET_WIND'
@@ -17,6 +19,12 @@ const reducer = (state, action) => {
     // console.log(action); // Helpful for debugging
 
     switch (action.type) {
+
+        case actionTypes.SET_DARK_MODE:
+            return {
+                ...state,
+                darkMode: action.darkMode
+            }
 
         case actionTypes.SET_TITLE:
             return {

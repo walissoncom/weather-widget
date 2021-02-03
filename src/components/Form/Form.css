@@ -3,6 +3,10 @@
     color: #333333;
 }
 
+.dark form {
+    color: #FFF;
+}
+
 .form >  form > div {
     margin: 20px 0; 
 }
