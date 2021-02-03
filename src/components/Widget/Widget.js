@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { API_KEY } from '../../services/keys';
 import { useDataLayerValue } from '../../DataLayerContext';
+import { motion } from 'framer-motion';
 import './Widget.css';
 
 /* API URL */
@@ -60,25 +61,40 @@ function Widget() {
             })
     }
 
+    /* Render */
+    /* Using Famer Motion for animation and effects */
     return (
-        <div className="widget">
+        <motion.div className="widget"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: .2 }}
+            whileTap={{ scale: 0.9 }}>
 
             {/* Widget top area - Displays Title */}
-            <div className="widget__top">
+            <motion.div className="widget__top"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.5 }}>
                 <h3>{title}</h3>
-            </div>
+            </motion.div>
 
             {/* Bottom area - Displays icon on the left side and weather info on the right side */}
             <div className={geolocationError ? 'widget__bottom geolocation__error' : 'widget__bottom'}>
 
                 {/* Icon */}
-                <div className="widget__icon">
+                <motion.div className="widget__icon"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 2 }}>
                     {weather?.weather[0].icon ? <img src={`http://openweathermap.org/img/wn/${weather?.weather[0].icon}@2x.png`} alt="Icon" /> : ''}
-                </div>
+                </motion.div>
 
                 {/* Weather info */}
-                <div className="widget__info">
-                    <div class="widget__info__details">
+                <motion.div className="widget__info"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 2.5 }}>
+                    <div className="widget__info__details">
                         <p>{weather ? weather?.name : 'Loading'}</p>
                         <h3>{weather?.main ? parseInt(weather?.main?.temp) : ''}&#186;</h3>
                         <div className={wind === 'on' ? 'widget__wind' : 'widget__wind off'}>
@@ -86,14 +102,17 @@ function Widget() {
                             <span>{weather?.wind?.speed ? parseInt(weather?.wind?.speed) : ''} {temperature === 'metric' ? 'km/h' : 'mph'}</span>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
 
             {/* Geolocation error */}
-            <div className={geolocationError ? 'widget__info__error geolocation__error' : 'widget__info__error'}>
+            <motion.div className={geolocationError ? 'widget__info__error geolocation__error' : 'widget__info__error'}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.5 }}>
                 {geolocationError}
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     )
 }
 

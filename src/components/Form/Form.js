@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDataLayerValue } from '../../DataLayerContext';
 import { actionTypes } from '../../reducer';
+import { motion } from 'framer-motion';
 import './Form.css';
 
 function Form() {
@@ -24,21 +25,33 @@ function Form() {
         dispatch({ type: actionTypes.SET_WIND, wind });
     }
 
+    /* Avoids reloading the page when user clicks on enter key on input field */
+    const formSubmit = (e) => {
+        e.preventDefault();
+    }
+
     /* Render */
+    /* Using Famer Motion for animation and effects */
     return (
-        <div className="form">
+        <div className="form" onSubmit={formSubmit}>
 
             {/* Editor Form */}
             <form>
 
                 {/* Title */}
-                <div className="form__title">
+                <motion.div className="form__title"
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: .25 }}>
                     <label>Title</label>
                     <input type="text" name="title" value={title} onChange={handleTitleInputChange} />
-                </div>
+                </motion.div>
 
                 {/* Temperature */}
-                <div className="form__temperature">
+                <motion.div className="form__temperature"
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: .5 }}>
 
                     <label>Temperature</label>
                     <div className="form__radio">
@@ -64,10 +77,13 @@ function Form() {
                         </div>
 
                     </div>
-                </div>
+                </motion.div>
 
                 {/* Wind */}
-                <div className="form__wind">
+                <motion.div className="form__wind"
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: .75 }}>
 
                     <label>Wind</label>
                     <div className="form__radio">
@@ -93,7 +109,7 @@ function Form() {
                         </div>
 
                     </div>
-                </div>
+                </motion.div>
             </form>
         </div>
     )
