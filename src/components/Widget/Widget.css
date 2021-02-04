@@ -66,13 +66,14 @@
     margin-right: 10px;
 }
 
-/* Widget Geolocation Error */
+/* Widget Error */
 .widget__info__error {
     color: red;
     display: none;
     margin: 20px 0;
 }
 
-.widget__info__error.geolocation__error {
+.widget__info__error.geolocation__error,
+.widget__info__error.api__key__error {
     display: block;
 }

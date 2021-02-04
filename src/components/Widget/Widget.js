@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import './Widget.css';
 
 /* API URL */
-let weatherAPI = 'http://api.openweathermap.org/data/2.5/weather?';
+let weatherAPI = 'https://api.openweathermap.org/data/2.5/weather?';
 
 function Widget() {
 
@@ -20,14 +20,18 @@ function Widget() {
 
     useEffect(() => {
 
-        /* Geolocation - Get users current position */
-        /* Retrieve Latitude and Longitude and send it to DataLayerContext */
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(getGeolocation, handleLocationError);
-        }
+        /* Check if API Key is avaible for fetching data */
+        if (API_KEY) {
 
-        /* Fetch data from API using params */
-        fetchWeatherAPI();
+            /* Geolocation - Get users current position */
+            /* Retrieve Latitude and Longitude and send it to DataLayerContext */
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(getGeolocation, handleLocationError);
+            }
+
+            /* Fetch data from API using params */
+            fetchWeatherAPI();
+        }
 
     }, [latitude, longitude, temperature])
 
@@ -79,7 +83,7 @@ function Widget() {
             </motion.div>
 
             {/* Bottom area - Displays icon on the left side and weather info on the right side */}
-            <div className={geolocationError ? 'widget__bottom geolocation__error' : 'widget__bottom'}>
+            <div className={geolocationError || !API_KEY ? 'widget__bottom geolocation__error' : 'widget__bottom'}>
 
                 {/* Icon */}
                 <motion.div className="widget__icon"
@@ -128,6 +132,17 @@ function Widget() {
                 transition={{ duration: 1.5 }}>
                 {geolocationError}
             </motion.div>
+
+            {/* API Key error */}
+            <motion.div className={API_KEY ? 'widget__info__error' : 'widget__info__error api__key__error'}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.5 }}>
+                <p>API Key not provided.</p>
+                <br />
+                <p>Check the Set Up & Installation Instructions content</p>
+            </motion.div>
+
         </motion.div>
     )
 }
