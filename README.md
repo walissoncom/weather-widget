@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# Weather Widget
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Weather Widget App created with React JS.
+<br />
 
-## Available Scripts
+## Demo
+<br />
 
-In the project directory, you can run:
+[Demo Link](https://weather-widget-8ad5b.web.app/)
+<br />
+<br />
 
-### `yarn start`
+![Image of Website](https://github.com/walissoncom/weather-widget/blob/master/weather-widget-demo.gif)
+<br />
+<br />
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Set Up & Instructions
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Setting up environment
+First, you need to have the proper environment set up in your machine to run react projects. You need Node.JS installed and React. If you do not have the required environment, please check the link bellow for instructions on how to install it:
 
-### `yarn test`
+[https://www.codecademy.com/articles/react-setup-i](https://www.codecademy.com/articles/react-setup-i)
+<br />
+<br />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Getting the source code
 
-### `yarn build`
+Once you have the environment set up, you need to get the source code. Clone the source code from the following GitHub repository:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[https://github.com/walissoncom/weather-widget](https://github.com/walissoncom/weather-widget)
+<br />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+If you need help to clone a repository from GitHub, here is an article that will guide you through those steps:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
+<br />
+<br />
 
-### `yarn eject`
+### Code pre-set up – API Key
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**IMPORTANT STEP**: Open the source code into your preferred code editor and add your Open Weather Map API Key to the ‘keys.js’ file.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To get the API Key, go to:  [https://home.openweathermap.org/users/sign_up](https://home.openweathermap.org/users/sign_up)
+<br />
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Once you have the API Key, past it into the ‘keys.js’ file. See below the file path:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Project files path: **src/services/keys.js**
+<br />
+<br />
 
-## Learn More
+### Install dependencies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+If you are using the source code from the email attachment, you can ignore this step.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Open the terminal and run the following command and wait for it to end:
 
-### Code Splitting
+`npm install`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+or
 
-### Analyzing the Bundle Size
+`npm i`
+<br />
+<br />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Start application
 
-### Making a Progressive Web App
+Start the application by running the following command:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+`npm start`
+<br />
+<br />
 
-### Advanced Configuration
+### Visit app
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+After running the command above (npm start), the app should open automatically on your browser. If it does not happen, go to your browser and type the following address:
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[http://localhost:3000/](http://localhost:3000/)
+<br />
