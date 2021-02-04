@@ -17,6 +17,8 @@ function Widget() {
     const [longitude, setLongitude] = useState(0);
     const [weather, setWeather] = useState(null);
     const [geolocationError, setGeolocationError] = useState(null);
+    const [isMobile, setIsMobile] = useState(false);
+    const [isLocationLoaded, setIsLocationLoaded] = useState(false);
 
     useEffect(() => {
 
@@ -25,15 +27,22 @@ function Widget() {
 
             /* Geolocation - Get users current position */
             /* Retrieve Latitude and Longitude and send it to DataLayerContext */
-            if (navigator.geolocation) {
+            if (navigator.geolocation && !isLocationLoaded)
                 navigator.geolocation.getCurrentPosition(getGeolocation, handleLocationError);
-            }
 
             /* Fetch data from API using params */
-            fetchWeatherAPI();
+            if (isLocationLoaded)
+                fetchWeatherAPI();
         }
 
-    }, [latitude, longitude, temperature])
+        /* Used to define if user is on mobile or desktop */
+        /* OpenWeatherAPI image when retrieved does not display in mobile devices, this will then display the local images for weather */
+        if (window.screen.width <= 768)
+            setIsMobile(true);
+        else
+            setIsMobile(false);
+
+    }, [latitude, longitude, temperature, isLocationLoaded])
 
     /* Set the Latitude and Longitude states */
     const getGeolocation = (position) => {
@@ -43,6 +52,9 @@ function Widget() {
 
         /* Longitude */
         setLongitude(position.coords.longitude);
+
+        /* Set Location Loaded */
+        setIsLocationLoaded(true);
     }
 
     /* Populate geolocationError message */
@@ -91,12 +103,14 @@ function Widget() {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 2 }}>
 
-                    {/* Check if the icon code is defined. Then check if user has selected dark mode or not. */}
+                    {/* Check if the icon code is retrieved from API. Then check if user has selected dark mode or not. */}
                     {/* If user has not selected any mode option, by default it loads the icons coming from the API provider */}
                     {/* If the user has selected dark mode, it loads local svg files with animation */}
+                    {/* If mobile device, display local icons */}
                     {
                         weather?.weather[0].icon ? (
-                            !darkMode ? (
+
+                            !darkMode && !isMobile ? (
                                 <img src={`http://openweathermap.org/img/wn/${weather?.weather[0].icon}@2x.png`} alt="Icon" />
                             ) : (
                                 <img className="animated__icon" src={require(`../../assets/icons/${weather?.weather[0].icon}.svg`).default} alt="Icon" />
@@ -104,6 +118,7 @@ function Widget() {
                         ) : (
                             ''
                         )
+
                     }
                 </motion.div>
 
@@ -114,7 +129,7 @@ function Widget() {
                     transition={{ duration: 2.5 }}>
 
                     <div className="widget__info__details">
-                        <p>{weather ? weather?.name : 'Loading'}</p>
+                        <p>{weather?.name}</p>
                         <h3>{weather?.main ? parseInt(weather?.main?.temp) : ''}&#186;</h3>
                         <div className={wind === 'on' ? 'widget__wind' : 'widget__wind off'}>
                             <span>Wind</span>

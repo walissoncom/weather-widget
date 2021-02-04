@@ -90,13 +90,18 @@ input:checked + .slider:before {
   .app {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .line {
     width: 250px;
     height: 1px;
-    margin: 15px 0 25px 0;
+    margin: 15px 0 35px 0;
+  }
+
+  .switch {
+    bottom: 25px;
+    right: 40px;
   }
 
 }
